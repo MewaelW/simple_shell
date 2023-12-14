@@ -7,7 +7,7 @@
  * @name: name
  * @value: value
  *
- * Return: new env
+ * Return: env
  */
 char *copy_info(char *name, char *value)
 {
@@ -17,7 +17,7 @@ char *copy_info(char *name, char *value)
 	len_name = _strlen(name);
 	len_value = _strlen(value);
 	len = len_name + len_value + 2;
-	new = malloc(sizeof(char) * (len));
+	n = malloc(sizeof(char) * (len));
 	_strcpy(n, name);
 	_strcat(n, "=");
 	_strcat(n, value);
@@ -98,7 +98,7 @@ int _unsetenv(data_shell *datash)
 		get_error(datash, -1);
 		return (1);
 	}
-	k = -1;
+	a = -1;
 	for (i = 0; datash->_environ[i]; i++)
 	{
 		var_env = _strdup(datash->_environ[i]);

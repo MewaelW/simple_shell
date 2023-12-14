@@ -9,7 +9,7 @@
  * @i: size of the buffer
  */
 
-void bring(char **lineptr, size_t *n, char *buffer, size_t i)
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t i)
 {
 
 	if (*lineptr == NULL)
