@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * strcat_cd - this function concatenates
+ * strcat_cd - this is a function that concatenates
  * the message for cd error
  *
  * @datash: data
@@ -12,7 +12,7 @@
  */
 char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 {
-	char *illegal_flag;
+	char *illegal;
 
 	_strcpy(error, datash->av[0]);
 	_strcat(error, ": ");
@@ -22,12 +22,12 @@ char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 	_strcat(error, msg);
 	if (datash->args[1][0] == '-')
 	{
-		illegal_flag = malloc(3);
-		illegal_flag[0] = '-';
-		illegal_flag[1] = datash->args[1][1];
-		illegal_flag[2] = '\0';
-		_strcat(error, illegal_flag);
-		free(illegal_flag);
+		illegal = malloc(3);
+		illegal[0] = '-';
+		illegal[1] = datash->args[1][1];
+		illegal[2] = '\0';
+		_strcat(error, illegal);
+		free(illegal);
 	}
 	else
 	{
@@ -40,32 +40,32 @@ char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 }
 
 /**
- * error_get_cd - this function is for error message for change
- * directory command in get_cd
+ * error_get_cd - this function is for error messages for cd
+ * command
  *
  * @datash: data
- * Return: error message
+ * Return: error propmt
  */
 
 char *error_get_cd(data_shell *datash)
 {
-	int len, len_i;
+	int len, len_y;
 	char *error, *ver_str, *msg;
 
 	ver_str = aux_itoa(datash->counter);
 	if (datash->args[1][0] == '-')
 	{
 		msg = ": Illegal option ";
-		len_i = 2;
+		len_y = 2;
 	}
 	else
 	{
 		msg = ": can't cd to ";
-		len_i = _strlen(datash->args[1]);
+		len_y = _strlen(datash->args[1]);
 	}
 
 	len = _strlen(datash->av[0]) + _strlen(datash->args[0]);
-	len += _strlen(ver_str) + _strlen(msg) + len_i + 5;
+	len += _strlen(ver_str) + _strlen(msg) + len_y + 5;
 	error = malloc(sizeof(char) * (len + 1));
 
 	if (error == 0)
@@ -82,23 +82,23 @@ char *error_get_cd(data_shell *datash)
 }
 
 /**
- * error_not_found - this is a generic error message
+ * error_not_found - A generic error message
  * for command not found
  *
- * @datash: data relevant
- * Return: Error message
+ * @datash: data
+ * Return: Error
  */
 
 char *error_not_found(data_shell *datash)
 {
-	int len;
+	int l;
 	char *error;
 	char *ver;
 
 	ver = aux_itoa(datash->counter);
-	len = _strlen(datash->av[0]) + _strlen(ver);
-	len += _strlen(datash->args[0]) + 16;
-	error = malloc(sizeof(char) * (len + 1));
+	l = _strlen(datash->av[0]) + _strlen(ver);
+	l += _strlen(datash->args[0]) + 16;
+	error = malloc(sizeof(char) * (l + 1));
 	if (error == 0)
 	{
 		free(error);
@@ -117,61 +117,61 @@ char *error_not_found(data_shell *datash)
 }
 
 /**
- * error_exit_shell - this is a generic error message
- * for an exit in get_exit
+ * error_exit_shell - A generic error message
+ * for an exit
  *
- * @datash: data relevant
- * Return: Error message
+ * @datash: data
+ * Return: Error
  */
 
 char *error_exit_shell(data_shell *datash)
 {
 	int len;
 	char *error;
-	char *ver;
+	char *er;
 
-	ver = aux_itoa(datash->counter);
-	len = _strlen(datash->av[0]) + _strlen(ver);
+	er = aux_itoa(datash->counter);
+	len = _strlen(datash->av[0]) + _strlen(er);
 	len += _strlen(datash->args[0]) + _strlen(datash->args[1]) + 23;
 	error = malloc(sizeof(char) * (len + 1));
 	if (error == 0)
 	{
-		free(ver);
+		free(er);
 		return (NULL);
 	}
 	_strcpy(error, datash->av[0]);
 	_strcat(error, ": ");
-	_strcat(error, ver);
+	_strcat(error, er);
 	_strcat(error, ": ");
 	_strcat(error, datash->args[0]);
 	_strcat(error, ": Illegal number: ");
 	_strcat(error, datash->args[1]);
 	_strcat(error, "\n\0");
-	free(ver);
+	free(er);
 
 	return (error);
 }
 
 
 /**
- * error_env - this is an error message for env in get_env
+ * error_env - An error message for env
  *
- * @datash: data relevant
- * Return: error message.
+ * @datash: data
+ * Return: error
  */
 
 char *error_env(data_shell *datash)
 {
-	int len;
+	int l;
 	char *error;
 	char *ver;
 	char *msg;
 
 	ver = aux_itoa(datash->counter);
 	msg = ": Unable to add or remove from environment\n";
-	len = _strlen(datash->av[0]) + _strlen(ver);
-	len += _strlen(datash->args[0]) + _strlen(msg) + 4;
-	error = malloc(sizeof(char) * (len + 1));
+	l = _strlen(datash->av[0]) + _strlen(ver);
+	l += _strlen(datash->args[0]) + _strlen(msg) + 4;
+	error = malloc(sizeof(char) * (l + 1));
 	if (error == 0)
 	{
 		free(error);
