@@ -1,46 +1,45 @@
 #include "main.h"
 
 /**
- * get_len - This function gets
- * the length of a number
+ * get_len -This function gets the length of a number.
  *
- * @n: int
- * Return: Length of number
+ * @n: type int number.
+ * Return: Lenght of a number.
  */
 
 int get_len(int n)
 {
-	unsigned int nn;
+	unsigned int n1;
 	int len = 1;
 
 	if (n < 0)
 	{
 		len++;
-		nn = n * -1;
+		n1 = n * -1;
 	}
 	else
 	{
-		nn = n;
+		n1 = n;
 	}
-	while (nn > 9)
+	while (n1 > 9)
 	{
 		len++;
-		nn = nn / 10;
+		n1 = n1 / 10;
 	}
 
 	return (len);
 }
 
 /**
- * aux_itoa - This function converts int into string
+ * aux_itoa - This function converts int to string
  *
  * @n: int
- * Return: Str
+ * Return: String
  */
 
 char *aux_itoa(int n)
 {
-	unsigned int nn;
+	unsigned int n1;
 	int len = get_len(n);
 	char *buffer;
 
@@ -52,54 +51,54 @@ char *aux_itoa(int n)
 
 	if (n < 0)
 	{
-		nn = n * -1;
+		n1 = n * -1;
 		buffer[0] = '-';
 	}
 	else
 	{
-		nn = n;
+		n1 = n;
 	}
 
 	len--;
 	do {
-		*(buffer + len) = (nn % 10) + '0';
-		nn = nn / 10;
+		*(buffer + len) = (n1 % 10) + '0';
+		n1 = n1 / 10;
 		len--;
 	}
-	while (nn > 0)
+	while (n1 > 0)
 		;
 	return (buffer);
 }
 
 /**
- * _atoi - This function converts a string into an int
+ * _atoi -This function converts a string to an integer
  *
- * @s: string
- * Return: integer
+ * @s: input str
+ * Return: int
  */
 
 int _atoi(char *s)
 {
-	unsigned int counter = 0, len = 0, oi = 0, pn = 1, m = 1, i;
+	unsigned int count = 0, size = 0, oi = 0, pn = 1, m = 1, i;
 
-	while (*(s + counter) != '\0')
+	while (*(s + count) != '\0')
 	{
-		if (len > 0 && (*(s + counter) < '0' || *(s + counter) > '9'))
+		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
 			break;
 
-		if (*(s + counter) == '-')
+		if (*(s + count) == '-')
 			pn *= -1;
 
-		if ((*(s + counter) >= '0') && (*(s + counter) <= '9'))
+		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
 		{
-			if (len > 0)
+			if (size > 0)
 				m *= 10;
-			len++;
+			size++;
 		}
-		counter++;
+		count++;
 	}
 
-	for (i = counter - len; i < counter; i++)
+	for (i = count - size; i < count; i++)
 	{
 		oi = oi + ((*(s + i) - 48) * m);
 		m /= 10;

@@ -4,7 +4,7 @@
  * free_line_list - This function frees line_list
  *
  * @head: linked list head
- * Return: none 
+ * Return: none
  */
 
 void free_line_list(line_list **head)
